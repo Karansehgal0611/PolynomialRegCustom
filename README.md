@@ -17,11 +17,10 @@ A complete implementation of polynomial regression with:
   - [Basic Usage](#basic-usage)
   - [Complete Workflow](#complete-workflow)
   - [Documentation Generation](#documentation-generation)
-- [Examples](#examples)
 - [Mathematical Background](#mathematical-background)
 - [API Reference](#api-reference)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 
@@ -82,3 +81,80 @@ predictions = model.predict(X)
 r2_score = model.score(X, y)
 print(f"R² Score: {r2_score:.4f}")
 ```
+### Complete Workflow
+
+```python
+from polynomial_regression import polynomial_regression_workflow
+
+# Run complete analysis
+results = polynomial_regression_workflow(
+    X, y,
+    degrees=[1, 2, 3, 4, 5],
+    true_function=lambda x: 2 + 3*x - 1.5*x**2 + 0.5*x**3,
+    title="Cubic Polynomial Example"
+)
+
+# Access results
+print(f"Best polynomial degree: {results.best_degree}")
+print("All metrics:", results.metrics)
+
+# Display plots (blocks execution)
+import matplotlib.pyplot as plt
+plt.show()
+```
+### Documentation Generation
+
+```python
+from polynomial_regression import generate_polynomial_regression_documentation
+
+# Generate comprehensive PDF docs
+generate_polynomial_regression_documentation("polynomial_regression_docs.pdf")
+```
+
+## Mathematical Background
+
+The polynomial regression model has the form:
+
+$$
+y = \beta_0 + \beta_1x + \beta_2x^2 + \cdots + \beta_nx^n + \varepsilon
+$$
+
+Where:
+- $y$: Dependent variable (target)
+- $x$: Independent variable (feature)
+- $\beta_i$: Model coefficients
+- $\varepsilon$: Error term
+
+Coefficients are calculated using the normal equation:
+
+$$
+\beta = (X^T X)^{-1} X^T y
+$$
+
+## API Reference
+### PolynomialRegression Class
+```python
+PolynomialRegression(degree=2)
+``` 
+### Polynomial_regression_workflow Function
+```python
+polynomial_regression_workflow(
+    X: np.ndarray,
+    y: np.ndarray,
+    degrees: List[int] = [1, 2, 3, 5],
+    test_size: float = 0.2,
+    random_state: int = 42,
+    true_function: Optional[Callable] = None,
+    title: str = "Polynomial Regression Analysis"
+) -> Dict[str, Any]
+```
+
+## Contributions
+Contributions welcome! Please follow these steps:
+
+- Fork the repository
+- Create a feature branch (git checkout -b feature/your-feature)
+- Commit your changes (git commit -am 'Add some feature')
+- Push to the branch (git push origin feature/your-feature)
+- Open a Pull Request
+
