@@ -53,21 +53,17 @@ cd PolynomialRegCustom
 pip install -r requirements.txt
 ```
 Requirements:
-
-Python 3.8+
-
-NumPy
-
-Matplotlib
-
-scikit-learn (for metrics)
-
-ReportLab (for PDF docs)
+- Python 3.8+
+- NumPy
+- Matplotlib
+- scikit-learn (for metrics)
+- ReportLab (for PDF docs)
 
 ## Usage
 
-Basic Usage
+### Basic Usage
 
+```python
 from polynomial_regression import PolynomialRegression
 import numpy as np
 
@@ -85,3 +81,4 @@ predictions = model.predict(X)
 # Evaluate model
 r2_score = model.score(X, y)
 print(f"R² Score: {r2_score:.4f}")
+```
